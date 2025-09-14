@@ -42,7 +42,7 @@ bundle install
 bundle exec ruby db/migrate_init.rb
 ```
 
-### Start the Server (pick one)
+### Start the Server
 Using rackup:
 ```bash
 bundle exec rackup -p 4567 -o 0.0.0.0
