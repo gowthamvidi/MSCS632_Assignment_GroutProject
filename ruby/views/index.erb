@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Books</title></head>
+<body>
+<h2>Books</h2>
+<form method="post" action="/add">
+  <input name="title"  placeholder="Title">
+  <input name="author" placeholder="Author">
+  <input name="genre"  placeholder="Genre">
+  <input name="year"   type="number" placeholder="Year">
+  <button type="submit">Add</button>
+</form>
+
+<div style="margin-top:1rem;">
+  <input id="q" placeholder="Search text">
+  <select id="by">
+    <option value="title">title</option>
+    <option value="author">author</option>
+    <option value="genre">genre</option>
+  </select>
+  <button onclick="load()">Search</button>
+</div>
+
+<pre id="list"></pre>
+
+<div style="margin-top:1rem;">
+  <button onclick="report('genre')">Report by genre</button>
+  <button onclick="report('author')">Report by author</button>
+  <pre id="report"></pre>
+</div>
+
+<script>
+async function load(){
+  const q = document.getElementById("q").value;
+  const by = document.getElementById("by").value;
+  const res = await fetch(`/search?q=${encodeURIComponent(q)}&by=${encodeURIComponent(by)}`);
+  const data = await res.json();
+  document.getElementById("list").textContent = JSON.stringify(data, null, 2);
+}
+async function report(type){
+  const res = await fetch(`/report/${type}`);
+  const data = await res.json();
+  document.getElementById("report").textContent = JSON.stringify(data, null, 2);
+}
+window.addEventListener("load", load);
+</script>
+
+<ul>
+  <% @books.each do |b| %>
+    <li><%= b[:title] %> by <%= b[:author] %> — <%= b[:genre] %> (<%= b[:year] %>)</li>
+  <% end %>
+</ul>
+</body>
+</html>
