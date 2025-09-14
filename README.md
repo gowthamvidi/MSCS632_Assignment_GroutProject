@@ -68,7 +68,8 @@ MSCS632_GroupProject_BookCatalog/
       jar
         catalogbook-0.0.1-SNAPSHOT.jar
         
-        
+###############
+
 ## How to Run — Ruby App
 ### Prerequisites
 - Ruby 3.2 or newer  
@@ -101,12 +102,12 @@ Open http://localhost:4567
 
 ## How to Run — Java App
 ### Prerequisites
-Java 17 or newer
-Maven 3.9+
+- Java 17 or newer
+- Maven 3.9+
 
 ### Setup
-cd CatalogBOOK
-mvn clean install
+- cd CatalogBOOK
+- mvn clean install
 
 ### Start the Server
 mvn spring-boot:run
@@ -124,6 +125,6 @@ http://localhost:8080
 http://localhost:8080/h2-console
 
 use below credentials
-JDBC URL: jdbc:h2:mem:testdb
-Username: sa
-Password: sa
+- JDBC URL: jdbc:h2:mem:testdb
+- Username: sa
+- Password: sa
