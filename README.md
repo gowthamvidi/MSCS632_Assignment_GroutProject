@@ -68,6 +68,7 @@ MSCS632_GroupProject_BookCatalog/
       jar
         catalogbook-0.0.1-SNAPSHOT.jar
         
+        
 ## How to Run — Ruby App
 ### Prerequisites
 - Ruby 3.2 or newer  
