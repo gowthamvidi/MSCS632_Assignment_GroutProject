@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Search Books</title>
+    <link rel="stylesheet" th:href="@{/css/list.css}" href="/css/list.css" />
+</head>
+<body>
+
+<h1>Search Books</h1>
+
+<!-- Search form (GET -> /searchbooks) -->
+<form class="search-form" th:action="@{/searchbooks}" action="/searchbooks" method="get">
+    <label>
+        Title
+        <input type="text" name="title" th:value="${title}">
+    </label>
+
+    <label>
+        Author
+        <input type="text" name="author" th:value="${author}">
+    </label>
+
+    <label>
+        Genre
+        <input type="text" name="genre" th:value="${genre}">
+    </label>
+
+    <label>
+        Year From
+        <input type="text" name="yearFrom" th:value="${yearFrom}">
+    </label>
+
+    <label>
+        Year To
+        <input type="text" name="yearTo" th:value="${yearTo}">
+    </label>
+
+    <label>
+        Page Size
+        <select name="size">
+            <option th:selected="${size} == 10"  value="10">10</option>
+            <option th:selected="${size} == 20"  value="20">20</option>
+            <option th:selected="${size} == 50"  value="50">50</option>
+            <option th:selected="${size} == 100" value="100">100</option>
+        </select>
+    </label>
+
+    <button type="submit">Search</button>
+    <a class="reset" th:href="@{/searchbooks}">Reset</a>
+</form>
+
+<!-- Results -->
+<div class="results">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th><th>Author</th><th>Genre</th><th>Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${page.content}">
+            <td th:text="${b.title}">Title</td>
+            <td th:text="${b.author}">Author</td>
+            <td th:text="${b.genre}">Genre</td>
+            <td th:text="${b.publicationYear}">1999</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(page.content)}">
+            <td colspan="4" class="muted">No books found.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pager" th:if="${page.totalPages > 1}">
+        <!-- Keep filters across page navigation -->
+        <form id="keepFilters" th:action="@{/searchbooks}" method="get">
+            <input type="hidden" name="title"    th:value="${title}"/>
+            <input type="hidden" name="author"   th:value="${author}"/>
+            <input type="hidden" name="genre"    th:value="${genre}"/>
+            <input type="hidden" name="yearFrom" th:value="${yearFrom}"/>
+            <input type="hidden" name="yearTo"   th:value="${yearTo}"/>
+            <input type="hidden" name="size"     th:value="${page.size}"/>
+            <input type="hidden" name="page"     id="pageInput" value="0"/>
+        </form>
+
+        <button th:disabled="${page.first}"
+                onclick="goPage(0)">« First</button>
+        <button th:disabled="${page.first}"
+                onclick="goPage([[${page.number - 1}]])">‹ Prev</button>
+
+        <span class="pager__info">
+        Page <span th:text="${page.number + 1}">1</span> /
+        <span th:text="${page.totalPages}">1</span>
+      </span>
+
+        <button th:disabled="${page.last}"
+                onclick="goPage([[${page.number + 1}]])">Next ›</button>
+        <button th:disabled="${page.last}"
+                onclick="goPage([[${page.totalPages - 1}]])">Last »</button>
+    </div>
+</div>
+
+<script>
+    function goPage(p){
+      const f = document.getElementById('keepFilters');
+      document.getElementById('pageInput').value = p;
+      f.submit();
+    }
+</script>
+</body>
+</html>

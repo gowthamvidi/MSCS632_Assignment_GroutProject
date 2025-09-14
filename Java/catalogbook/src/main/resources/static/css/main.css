@@ -1,0 +1,125 @@
+/* ==== Theme ==== */
+:root{
+  --bg: #0c1220;           /* page background */
+  --panel: #121a2e;        /* card base */
+  --border: #223152;
+  --text: #ecf1ff;
+  --muted: #a6b0cb;
+  --shadow: 0 16px 40px rgba(0,0,0,.35);
+
+  --add:    linear-gradient(180deg, #35d0a5, #26a982);   /* green */
+  --delete: linear-gradient(180deg, #ff7f96, #ff5673);   /* red  */
+  --search: linear-gradient(180deg, #f8c14a, #f29b28);   /* amber*/
+  --list:   linear-gradient(180deg, #7ea6ff, #4c7fe6);   /* blue */
+}
+
+/* ==== Base ==== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font: 500 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.container{max-width: 1100px; margin: 0 auto; padding: 1.25rem}
+
+/* ==== Topbar ==== */
+.topbar{
+  background: linear-gradient(180deg, #0f1830, #0c1220);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 10;
+}
+.topbar__title{
+  margin: .8rem 0;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+/* ==== Grid of action cards ==== */
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 2rem 0 3rem;
+}
+@media (max-width: 900px){
+  .card-grid{ grid-template-columns: 1fr; }
+}
+
+/* ==== Action Card ==== */
+.action-card{
+  display: grid;
+  place-items: center;
+
+  /* proportions like your sketch (wide rectangles) */
+  min-height: 180px;
+  padding: 2rem;
+
+  color: var(--text);
+  text-decoration: none;
+
+  background: var(--panel);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+/* subtle gradient ribbon behind content */
+.action-card::before{
+  content:"";
+  position:absolute; inset:-30% -10% auto -10%;
+  height: 200%;
+  transform: rotate(6deg);
+  opacity: .18;
+  z-index: -1;
+  background: linear-gradient(90deg, #ffffff33, transparent 60%);
+}
+
+/* titles */
+.action-card__title{
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+
+/* hover / focus */
+.action-card:hover,
+.action-card:focus-visible{
+  transform: translateY(-6px);
+  box-shadow: 0 22px 60px rgba(0,0,0,.5);
+  border-color: #385189;
+}
+
+/* color accents per card */
+.action-card--add{    background-image: radial-gradient(1200px 300px at 10% 0%, #35d0a533 0%, transparent 60%); }
+.action-card--delete{ background-image: radial-gradient(1200px 300px at 10% 0%, #ff7f9633 0%, transparent 60%); }
+.action-card--search{ background-image: radial-gradient(1200px 300px at 10% 0%, #f8c14a33 0%, transparent 60%); }
+.action-card--list{   background-image: radial-gradient(1200px 300px at 10% 0%, #7ea6ff33 0%, transparent 60%); }
+
+/* thin top accent bar */
+.action-card--add::after,
+.action-card--delete::after,
+.action-card--search::after,
+.action-card--list::after{
+  content:"";
+  position:absolute; top:0; left:0; right:0; height:8px;
+  filter: saturate(130%);
+}
+.action-card--add::after{    background: var(--add); }
+.action-card--delete::after{ background: var(--delete); }
+.action-card--search::after{ background: var(--search); }
+.action-card--list::after{   background: var(--list); }
+
+/* ==== Footer ==== */
+.footer{
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  padding: 1rem 0 2rem;
+  text-align: center;
+}

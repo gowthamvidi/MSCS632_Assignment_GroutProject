@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books Report</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #f5f7fb;
+          margin: 0;
+          padding: 40px;
+          text-align: center;
+          color: #333;
+        }
+
+        h1 {
+          margin-bottom: 40px;
+          font-size: 2rem;
+          color: #222;
+        }
+
+        .cards {
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          flex-wrap: wrap;
+        }
+
+        .card {
+          width: 260px;
+          height: 200px;
+          background: #ffffff;
+          border: 2px solid #d0d7e2;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #4c84ff;
+          text-decoration: none;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+          background: #f0f4ff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Books Report</h1>
+
+<div class="cards">
+    <a href="/reports_genre" class="card">Genre</a>
+    <a href="/reports_author" class="card">Author</a>
+</div>
+
+</body>
+</html>

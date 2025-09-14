@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Book Catalog</title>
+
+    <!-- Optional (WebJars) -->
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body class="bg-light">
+<header class="topbar">
+    <div class="container">
+        <h1 class="topbar__title">Book Catalog System</h1>
+    </div>
+</header>
+
+<main class="container">
+    <section class="card-grid">
+        <a class="action-card action-card--add" href="/books/addnew" aria-label="Add book">
+            <div class="action-card__title">Add Book</div>
+        </a>
+
+        <a class="action-card action-card--delete" href="/booksmanage" aria-label="Delete book">
+            <div class="action-card__title">Delete Book</div>
+        </a>
+
+        <a class="action-card action-card--search" href="/books_search" aria-label="Search book">
+            <div class="action-card__title">Search Book</div>
+        </a>
+
+        <a class="action-card action-card--list" href="/books_report" aria-label="Book list">
+            <div class="action-card__title">Book List</div>
+        </a>
+    </section>
+</main>
+
+</body>
+</html>
