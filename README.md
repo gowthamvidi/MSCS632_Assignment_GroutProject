@@ -65,9 +65,8 @@ MSCS632_GroupProject_BookCatalog/
                 booksfinalreport.html
               layout.html
             application.properties
-    jar
-      catalogbook-0.0.1-SNAPSHOT.jar
-        
+    jar/
+      catalogbook-0.0.1-SNAPSHOT.jar         
 
 ### How to Run — Ruby App
 ### Prerequisites
