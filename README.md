@@ -5,7 +5,6 @@
 Two language implementations of a simple book catalog with a web user interface and SQLite storage.
 
 ## Languages and Features
-- **C sharp**: ASP dot NET Core web app with Entity Framework Core and LINQ queries
 - **Ruby**: Sinatra web app with Sequel and Ruby blocks for summaries
 
 ## Core Functions
