@@ -1,0 +1,16 @@
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\bin\Debug\net8.0-windows\BookCatalogApp.exe
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\bin\Debug\net8.0-windows\BookCatalogApp.dll
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.Form1.resources
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.csproj.GenerateResource.cache
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.AssemblyInfoInputs.cache
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.AssemblyInfo.cs
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.csproj.CoreCompileInputs.cache
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.dll
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\refint\BookCatalogApp.dll
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.pdb
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\bin\Debug\net8.0-windows\BookCatalogApp.deps.json
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\bin\Debug\net8.0-windows\BookCatalogApp.runtimeconfig.json
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\bin\Debug\net8.0-windows\BookCatalogApp.pdb
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\BookCatalogApp.genruntimeconfig.cache
+C:\Users\hlawa\source\repos\BookCatalogApp\BookCatalogApp\obj\Debug\net8.0-windows\ref\BookCatalogApp.dll
