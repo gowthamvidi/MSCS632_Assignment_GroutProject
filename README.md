@@ -1,19 +1,20 @@
-Book Cataloging System — Deliverable 1
+# Book Cataloging System — Deliverable 1
 
-Team 15 - Haeri Kyoung & Shiva Gowtham Kumar Vidiyala
+**Team 15** · Haeri Kyoung & Shiva Gowtham Kumar Vidiyala
 
 Two language implementations of a simple book catalog with a web user interface and SQLite storage.
 
-Languages and features
-- C sharp: ASP dot NET Core web app with Entity Framework Core and LINQ queries
-- Ruby: Sinatra web app with Sequel and Ruby blocks for summaries
+## Languages and Features
+- **C sharp**: ASP dot NET Core web app with Entity Framework Core and LINQ queries
+- **Ruby**: Sinatra web app with Sequel and Ruby blocks for summaries
 
-Core functions
-- add a book with title author genre and year
-- list and search by title author or genre
-- simple report count by genre and by author
+## Core Functions
+- Add a book with title, author, genre, and year  
+- List and search by title, author, or genre  
+- Simple reports showing counts by genre and by author
 
-Repository layout
+## Repository Layout
+```plaintext
 MSCS632_GroupProject_BookCatalog/
   README.md
   ruby/
@@ -26,31 +27,33 @@ MSCS632_GroupProject_BookCatalog/
       index.erb
     vendor/           (bundled gems, auto created)
   csharp/             (to be added next)
+```
 
-How to run — Ruby app
+## How to Run — Ruby App
 
-Prerequisites
-- Ruby 3.2 or newer
-- Bundler
+### Prerequisites
+- Ruby 3.2 or newer  
+- Bundler  
 - SQLite
 
-Setup
+### Setup
+```bash
 cd ruby
 bundle install
 bundle exec ruby db/migrate_init.rb
+```
 
-Start the server (pick one)
-# using rackup
+### Start the Server (pick one)
+Using rackup:
+```bash
 bundle exec rackup -p 4567 -o 0.0.0.0
-
-# or run the app file with Puma
-bundle exec ruby app.rb -p 4567 -o 0.0.0.0 -s puma
+```
 
 Open http://localhost:4567
 
-Routes
-- GET /            list UI and add form
-- POST /add        create a book
-- GET /search      q= text filter, by= title or author or genre
-- GET /report/genre   JSON counts by genre
-- GET /report/author  JSON counts by author
+### Routes
+- `GET /` — list UI and add form  
+- `POST /add` — create a book  
+- `GET /search` — query with `q=` and `by=title|author|genre`  
+- `GET /report/genre` — JSON counts by genre  
+- `GET /report/author` — JSON counts by author
