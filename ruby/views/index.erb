@@ -1,54 +1,95 @@
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Books</title></head>
+<head>
+  <meta charset="utf-8">
+  <title>Books</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 16px; }
+    h2 { margin-top: 0; }
+    form.add { display: grid; grid-template-columns: repeat(4, minmax(160px, 1fr)) auto; gap: 8px; align-items: center; }
+    form.add input { padding: 6px 8px; }
+    form.add button { padding: 8px 12px; }
+    .bar { margin: 16px 0; display: flex; gap: 8px; align-items: center; }
+    .hint { color: #666; margin: 8px 0 6px; }
+    pre { background: #f7f7f7; padding: 10px; overflow: auto; }
+    table { border-collapse: collapse; margin-top: 8px; }
+    th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+    th { background: #fafafa; }
+  </style>
+</head>
 <body>
-<h2>Books</h2>
-<form method="post" action="/add">
-  <input name="title"  placeholder="Title">
-  <input name="author" placeholder="Author">
-  <input name="genre"  placeholder="Genre">
-  <input name="year"   type="number" placeholder="Year">
-  <button type="submit">Add</button>
-</form>
+  <h2>Books</h2>
 
-<div style="margin-top:1rem;">
-  <input id="q" placeholder="Search text">
-  <select id="by">
-    <option value="title">title</option>
-    <option value="author">author</option>
-    <option value="genre">genre</option>
-  </select>
-  <button onclick="load()">Search</button>
-</div>
+  <!-- Add book -->
+  <form class="add" method="post" action="/add">
+    <input name="title"  placeholder="Title" required>
+    <input name="author" placeholder="Author" required>
+    <input name="genre"  placeholder="Genre" required>
+    <input name="year"   type="number" placeholder="Year">
+    <button type="submit">Add</button>
+  </form>
 
-<pre id="list"></pre>
+  <!-- Search -->
+  <div class="bar">
+    <input id="q" placeholder="Search text" />
+    <select id="by">
+      <option value="title">title</option>
+      <option value="author">author</option>
+      <option value="genre">genre</option>
+    </select>
+    <button onclick="load()">Search</button>
+    <button onclick="clearSearch()">Clear</button>
+  </div>
 
-<div style="margin-top:1rem;">
-  <button onclick="report('genre')">Report by genre</button>
-  <button onclick="report('author')">Report by author</button>
-  <pre id="report"></pre>
-</div>
+  <pre id="list"></pre>
 
-<script>
-async function load(){
-  const q = document.getElementById("q").value;
-  const by = document.getElementById("by").value;
-  const res = await fetch(`/search?q=${encodeURIComponent(q)}&by=${encodeURIComponent(by)}`);
-  const data = await res.json();
-  document.getElementById("list").textContent = JSON.stringify(data, null, 2);
-}
-async function report(type){
-  const res = await fetch(`/report/${type}`);
-  const data = await res.json();
-  document.getElementById("report").textContent = JSON.stringify(data, null, 2);
-}
-window.addEventListener("load", load);
-</script>
+  <!-- Summaries -->
+  <p class="hint">Summary shows counts of books grouped by the selected field.</p>
+  <div class="bar" role="group" aria-label="Summary controls">
+    <button onclick="showSummary('genre')"  title="Show count of books per genre"  aria-label="Show genre counts">View genre totals</button>
+    <button onclick="showSummary('author')" title="Show count of books per author" aria-label="Show author counts">View author totals</button>
+  </div>
+  <div id="report"></div>
 
-<ul>
-  <% @books.each do |b| %>
-    <li><%= b[:title] %> by <%= b[:author] %> — <%= b[:genre] %> (<%= b[:year] %>)</li>
-  <% end %>
-</ul>
+  <script>
+  async function load(){
+    const q = document.getElementById("q").value;
+    const by = document.getElementById("by").value;
+    const res = await fetch(`/search?q=${encodeURIComponent(q)}&by=${encodeURIComponent(by)}`);
+    const data = await res.json();
+    document.getElementById("list").textContent = JSON.stringify(data, null, 2);
+  }
+
+  function clearSearch(){
+    document.getElementById("q").value = "";
+    load();
+  }
+
+  async function showSummary(type){
+    const res = await fetch(`/report/${type}`);
+    const data = await res.json(); // [{genre:'Fiction', count:3}] or [{author:'Ava', count:2}]
+    const container = document.getElementById("report");
+
+    if (!Array.isArray(data) || data.length === 0) {
+      container.innerHTML = "<p>No data</p>";
+      return;
+    }
+
+    const key = type === "genre" ? "genre" : "author";
+    let html = "<table><thead><tr><th>"
+             + key.charAt(0).toUpperCase() + key.slice(1)
+             + "</th><th>Count</th></tr></thead><tbody>";
+
+    for (const row of data) {
+      const label = row[key] && row[key].toString().trim() ? row[key] : "(unknown)";
+      html += `<tr><td>${label}</td><td>${row.count}</td></tr>`;
+    }
+    html += "</tbody></table>";
+    container.innerHTML = html;
+  }
+
+  // initial load
+  window.addEventListener("load", load);
+  </script>
 </body>
 </html>
